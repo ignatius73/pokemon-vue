@@ -1,5 +1,9 @@
 <template>
-    <div>
+    <div class='pokebola-container' v-if="!playing">
+        <h1>Presiona la Pokebola para comenzar</h1>
+        <a v-on:click.stop.prevent="nuevoJuego" href="#"><img src="../assets/pokeball.png" class="pokebola" alt="pokebola" /></a>
+    </div>
+    <div v-if="playing">
         <h1 v-if="!pokemon">Cargando...</h1>
         <div v-else>
             <h1>¿Quién es este Pokémon?</h1>
@@ -7,12 +11,17 @@
                 <pokemon-options 
                     :pokemons="pokemonArr"
                     @selection="checkAnswer" />
-
+            
         </div>
-        <div v-if="showPokemon">
+        
+        <template v-if="showPokemon">
             <h1 v-if="correcto">Felicidades, acertaste!</h1>
             <h1 v-if="!correcto">Vuelve a intentarlo!</h1>
-        </div>    
+
+            
+
+            <button @click="nuevoJuego">Nuevo Juego</button>
+        </template>    
         <!-- Opciones -->
     </div>
 </template>
@@ -36,7 +45,10 @@ import getPokemonOptions from '@/helpers/getPokemonOptions'
             pokemonArr: [],
             pokemon: null,
             showPokemon:false,
-            correcto: false
+            correcto: false,
+            playing: false,
+            lifes: 3
+            
         }
     },
     methods:{
@@ -51,20 +63,46 @@ import getPokemonOptions from '@/helpers/getPokemonOptions'
             this.showPokemon = true
         },
         checkAnswer(id){
-            console.log(id)
             this.showImage()
-           id == this.pokemon.id ? this.correcto = true : this.correcto = false
-          
+            id == this.pokemon.id ? this.correcto = true : this.correcto = false
+             
+        },
+        nuevoJuego(){
+            
+            this.pokemonArr= [],
+            this.pokemon= null,
+            this.showPokemon=false,
+            this.correcto= false,
+            this.playing= false,
+            this.getPokemonArr(),
+            this.playing=true
         }
-    }  ,
+    },
     mounted(){
         this.getPokemonArr()
-    }  
+    }
+   
     }
     
  
 </script>
 
-<style lang="scss" scoped>
-
+<style lang="css" scoped>
+    
+    .pokebola-container{
+        height:90vh;
+        width:100vw;
+        align-items: center;
+    }
+    .pokebola{
+       
+        width:30vw;
+    }
+    .hidden-pokemon {
+        display:none;
+        filter:brightness(0);
+}
+    .pokebolach{
+        width:10vw
+    }
 </style>

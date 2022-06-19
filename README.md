@@ -4,6 +4,8 @@ Could you guess what pokemon it is?
 
 I've used VueJs3 Options Api, axios and many other technics of advanced javascript and vue framework.
 
+Deployed to https://ignatius73.github.io/pokemon-vue/
+
 Inspired on a project from a Fernando Herrera's course.
 
 ##Project setup

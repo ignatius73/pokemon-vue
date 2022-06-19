@@ -1,6 +1,12 @@
-# pokemon
+# Pokemon
 
-## Project setup
+Could you guess what pokemon it is?
+
+I've used VueJs3 Options Api, state management with Vuex3, VueRouter to the navigate system, axios and many other technics of advanced javascript and vue framework.
+
+Inspired on a project from a Fernando Herrera's course.
+
+##Project setup
 ```
 npm install
 ```
